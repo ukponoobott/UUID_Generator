@@ -4,7 +4,8 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-data = {}
+data = {} 
+data_list = []
 
 @app.route("/generate_UUID")
 def generateUUID():
@@ -15,18 +16,14 @@ def generateUUID():
     # Use the datetime module to get timestamp
     _timestamp = datetime.now().__str__()
     
-    #generate a random UUID value
+    # Generate a random UUID value
     _random_UUID = uuid1().hex
     
-    #populate the dict
-    data[_timestamp] = _random_UUID
-    
-    #sort the dict to descending order, latest paid at the top
-    formatted_data = dict(sorted(data.items(), reverse=True))
+    # Use LIFO to create a list with most recent entry first
+    data_list.insert(0, {_timestamp : _random_UUID})
     
     #return a json object
-    return jsonify(formatted_data)
-
+    return jsonify(data_list)
 
 if __name__ == "__main__":
     app.run(port=2000, debug=True)
