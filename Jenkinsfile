@@ -13,7 +13,7 @@ pipeline {
       
       }  
     
-    tage ("deploy") {
+    stage ("deploy") {
       steps {
         echo "I am deploying"}
       
