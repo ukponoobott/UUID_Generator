@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AZURE_WEBAPP_NAME: 'uuid_app'
-      PYTHON_VERSION: '3.7'
+      AZURE_WEBAPP_NAME: 'uuid-app'
+      PYTHON_VERSION: '3.8'
 
     steps:
       - uses: actions/checkout@v2
@@ -58,4 +58,4 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME}}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ secrets.WEBAPP_PUBLISHPROFILE }}
