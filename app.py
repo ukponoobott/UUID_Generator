@@ -26,4 +26,4 @@ def generateUUID():
     return jsonify(data_list)
 
 if __name__ == "__main__":
-    app.run(port=2000, debug=True)
+    app.run(debug=True, port=3000)
