@@ -27,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: uuid-api:github-pr-build-${{ github.run_number }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/uuid-api:github-pr-build-${{ github.run_number }}
