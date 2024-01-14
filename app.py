@@ -7,6 +7,10 @@ app = Flask(__name__)
 data = {} 
 data_list = []
 
+@app.route("/")
+def index():
+    return "Success"
+
 @app.route("/generate_UUID")
 def generateUUID():
     """
