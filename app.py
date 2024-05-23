@@ -9,7 +9,7 @@ data_list = []
 
 @app.route("/")
 def index():
-    return "Success"
+    return "App is live"
 
 @app.route("/generate_UUID")
 def generateUUID():
