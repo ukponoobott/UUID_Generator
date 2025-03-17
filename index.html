@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #eacccc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0f0877;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #060ba9;
+        }
+
+        #uuidResponse {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>UUID Generator</h1>
+
+<button onclick="generateUUID()">Generate UUID</button>
+
+<div id="uuidResponse"></div>
+
+<script>
+    function generateUUID() {
+        // Make API call to generate UUID
+        try {
+            fetch('http://127.0.0.1:3001/generate_UUID', { mode: 'no-cors' })
+            .then(response => response.json())
+            .then(data => {
+                
+                displayResponse(data);
+            })
+        } catch (error) {
+            console.error('Error fetching UUID:', error);
+        }
+    }
+
+    function displayResponse(response) {
+        const uuidResponseDiv = document.getElementById('uuidResponse');
+        
+        // Clear previous content
+        uuidResponseDiv.innerHTML = '';
+
+        // Loop through all key-value pairs in the response
+        for (const key in response) {
+            const value = response[key];
+
+            // Display the formatted key-value pair
+            const formattedResponse = `<strong>${key}:</strong> ${value}<br>`;
+            uuidResponseDiv.innerHTML += formattedResponse;
+        }
+    }
+</script>
+
+</body>
+</html>
